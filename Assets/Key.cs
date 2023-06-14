@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Key : MonoBehaviour
 {
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
