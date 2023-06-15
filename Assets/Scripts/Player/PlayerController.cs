@@ -12,17 +12,20 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private FloatingJoystick joystick;
      public bool isMove;
     public bool hasKey = false;
+    public bool Phone = false;
     private void Update()
-    {   
-        
-#if UNITY_EDITOR
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
-#else
-        verticalInput = joystick.Vertical;
-        horizontalInput = joystick.Horizontal;
-#endif  
-        
+    {
+        if (!Phone)
+        {
+            verticalInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            verticalInput = joystick.Vertical;
+            horizontalInput = joystick.Horizontal;
+        }
+
         if (horizontalInput != 0 || verticalInput != 0)
         {
             dir =new  Vector3(horizontalInput, 0f, verticalInput);

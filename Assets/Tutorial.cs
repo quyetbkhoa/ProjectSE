@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
-{   
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+{
+    public int index = 0;
 
-    // Update is called once per frame
+    public GameObject[] popUps;
     void Update()
-    {
-        
-    }
-
-    void Level1()
-    {
-        
+    {   
+        for (int i = 0; i < popUps.Length; ++i)
+        {
+            if (i == index)
+            {
+                popUps[i].SetActive(true);
+            }
+            else
+            {
+                popUps[i].SetActive(false);
+            }
+        }   
     }
 }
