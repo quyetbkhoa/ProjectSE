@@ -14,6 +14,7 @@ public class Chest : MonoBehaviour
             {
                 tutorial.index++;    
                 Debug.Log("WIN");
+                GameManager.Instance.OnWinGame();
             }
             else Debug.Log("Need Key");
         }

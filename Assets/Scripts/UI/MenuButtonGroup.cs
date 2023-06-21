@@ -6,10 +6,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuButtonGroup : MonoBehaviour
-{
+{  
+   
    public void OnClickStart()
    {
-      SceneManager.LoadScene("Gameplay");
+      SceneManager.LoadScene($"Level");
    }
    public void OnClickLevel()
    {

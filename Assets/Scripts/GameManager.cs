@@ -1,42 +1,50 @@
 using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-   private int currentLevel;
+   private GameObject currentLevel;
+   private int indexLevel;
    public int level;
    public bool Load = false;
+
+   public int GetCurrentLevel()
+   {
+      return PlayerPrefs.GetInt("current_level",1);
+   }
+
+   public void SetCurrentLevel(int index)
+   {
+      PlayerPrefs.SetInt("current_level", index);
+   }
    public void OnWinGame()
    {
-      PlayerPrefs.SetInt("current_level", currentLevel +1);
-      //sound
+      PlayerPrefs.SetInt("current_level", indexLevel +1);
+      LoadLevel(indexLevel);
    }
    
    public void Awake()
    {  
-      currentLevel = PlayerPrefs.GetInt("current_level",1);
-      LoadLevel(currentLevel);
+      indexLevel = PlayerPrefs.GetInt("current_level",1);
+      LoadLevel(indexLevel);
    }
 
    private void Update()
    {
       if(Load) LoadLevel(level);
    }
-
    public void LoadLevel(int index)
    {
-      string levelName = $"Levels/Level {index}";
-      print(levelName);
-      GameObject levelPrefab = Resources.Load<GameObject>(levelName);
-
-      if (levelPrefab != null)
+      string sceneName = $"Level {index}";
+      if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
       {
-         GameObject levelInstance = Instantiate(levelPrefab);
-         // Do something with the loaded level instance
+         SceneManager.LoadScene(sceneName);
       }
       else
       {
-            Debug.LogError("Failed to load level!");
+         Debug.LogError("Scene not found!");
       }
    }
    
