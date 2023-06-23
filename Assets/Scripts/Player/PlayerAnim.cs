@@ -38,6 +38,9 @@ public class PlayerAnim : MonoBehaviour
             case PlayerState.Walk:
                 playerAnimator.Play("Walk");
                 break;
+            case  PlayerState.Win:
+                playerAnimator.Play("Win");
+                break;
         }
     }
 }
@@ -45,4 +48,5 @@ public enum PlayerState
 {
     Idle,
     Walk,
+    Win,
 }   

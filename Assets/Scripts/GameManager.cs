@@ -6,34 +6,37 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
    private GameObject currentLevel;
-   private int indexLevel;
-   public int level;
-   public bool Load = false;
+   public int indexLevel => PlayerPrefs.GetInt("current_level",1) ;
 
-   public int GetCurrentLevel()
-   {
-      return PlayerPrefs.GetInt("current_level",1);
-   }
-
+   public bool reset = false;
+   [SerializeField] private GameObject losePopup;
+   [SerializeField] private GameObject winPopup;
+   // public int GetCurrentLevel()
+   // {
+   //    return PlayerPrefs.GetInt("current_level",1);
+   // }
+   
    public void SetCurrentLevel(int index)
-   {
+   {  
       PlayerPrefs.SetInt("current_level", index);
    }
+   
    public void OnWinGame()
-   {
-      PlayerPrefs.SetInt("current_level", indexLevel +1);
-      LoadLevel(indexLevel);
+   {  
+      //Show Win Popup
+      winPopup.SetActive(true);
+      //PlayerPrefs.SetInt("current_level", indexLevel +1);
    }
    
-   public void Awake()
-   {  
-      indexLevel = PlayerPrefs.GetInt("current_level",1);
-      LoadLevel(indexLevel);
-   }
-
+   // public void Awake()
+   // {
+   //    indexLevel = PlayerPrefs.GetInt("current_level",1);
+   // }
+   
    private void Update()
    {
-      if(Load) LoadLevel(level);
+      if(reset) SetCurrentLevel(1);
+      reset = false;
    }
    public void LoadLevel(int index)
    {
@@ -44,8 +47,12 @@ public class GameManager : Singleton<GameManager>
       }
       else
       {
-         Debug.LogError("Scene not found!");
+         Debug.LogError($"Scene {index} not found!");
       }
    }
-   
+   public void LoadNextLevel()
+   {
+      LoadLevel(indexLevel+1);
+   }
 }
+

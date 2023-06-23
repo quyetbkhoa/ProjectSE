@@ -6,19 +6,23 @@ public class Tutorial : MonoBehaviour
 {
     public int index = 0;
 
-    public GameObject[] popUps;
+    public GameObject[] popUpTutorial;
+
     void Update()
     {   
-        for (int i = 0; i < popUps.Length; ++i)
-        {
-            if (i == index)
-            {
-                popUps[i].SetActive(true);
-            }
-            else
-            {
-                popUps[i].SetActive(false);
-            }
-        }   
+        if(GameManager.Instance.indexLevel == 1)
+           for (int i = 0; i < popUpTutorial.Length; ++i)
+           {
+                    if (i == index)
+                    {
+                        popUpTutorial[i].SetActive(true);
+                    }
+                    else
+                    {
+                        popUpTutorial[i].SetActive(false);
+                    }
+           }   
     }
+    
+    
 }

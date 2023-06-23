@@ -12,7 +12,7 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private FloatingJoystick joystick;
      public bool isMove;
     public bool hasKey = false;
-    public bool Phone = false;
+    public bool Phone = true;
     private void Update()
     {
         if (!Phone)

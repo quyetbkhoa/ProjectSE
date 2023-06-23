@@ -12,6 +12,7 @@ public class Key : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             collision.transform.GetComponent<PlayerController>().hasKey = true;
+            if(tutorial != null)
             tutorial.index++;
             Destroy(gameObject);
         }
