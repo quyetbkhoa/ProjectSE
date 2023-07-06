@@ -9,6 +9,7 @@ public class WinPopup : Popup
     base.OnClick();
     print("continue");
     TurnOff();
+    GameManager.Instance.starCount = 0;
     GameManager.Instance.LoadNextLevel();
   }
 }

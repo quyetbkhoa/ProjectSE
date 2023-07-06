@@ -9,7 +9,7 @@ public class PlayerController: MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
     private Vector3 dir;
-    [SerializeField] private FloatingJoystick joystick;
+    [SerializeField] private FixedJoystick joystick;
      public bool isMove;
     public bool hasKey = false;
     public bool Phone = true;

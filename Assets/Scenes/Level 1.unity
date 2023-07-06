@@ -171,7 +171,6 @@ MonoBehaviour:
   popUpTutorial:
   - {fileID: 1970838698}
   - {fileID: 570238524}
-  - {fileID: 1139687091}
 --- !u!224 &129622543 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2291997815283845651, guid: 8a730e20895b5f84482e3932a298fd6d, type: 3}
@@ -528,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61142b0fe6f1746b680a7035680e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starCount: 0
   reset: 0
   losePopup: {fileID: 2291997815222495261}
   winPopup: {fileID: 501360993867615382}
