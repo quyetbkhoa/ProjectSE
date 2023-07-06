@@ -13,9 +13,11 @@ public class GameManager : Singleton<GameManager>
    public bool reset = false;
    [SerializeField] private GameObject losePopup;
    [SerializeField] private GameObject winPopup;
+   public Canvas canvasLevel;
    public void OnWinGame()
    {  
       //Show Win Popup
+      canvasLevel.gameObject.SetActive(false);
       winPopup.SetActive(true);
       //PlayerPrefs.SetInt("current_level", indexLevel +1);
    }

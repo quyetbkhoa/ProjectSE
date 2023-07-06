@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController: MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController: MonoBehaviour
      public bool isMove;
     public bool hasKey = false;
     public bool Phone = true;
+    public bool canMove = true;
     private void Update()
     {
         if (!Phone)
@@ -37,15 +39,22 @@ public class PlayerController: MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (CanMove(dir)) playerRb.velocity = new Vector3(horizontalInput * speed*Time.deltaTime, playerRb.velocity.y,verticalInput * speed*Time.deltaTime);
-        //Vector3 move = new Vector3(horizontalInput, 0f, verticalInput) * (speed * Time.deltaTime);
-        //playerRb.MovePosition(transform.position + move);
+        if (!canMove)
+        {
+            playerRb.velocity = Vector3.zero;
+        }
+        else if (CanMove(dir)) playerRb.velocity = new Vector3(horizontalInput * speed*Time.deltaTime, playerRb.velocity.y,verticalInput * speed*Time.deltaTime);
+         
         
+    }
+    //reset joystick
+    public void ResetJoystick()
+    {
+       joystick.OnPointerUp(null);
     }
 
     private bool CanMove(Vector3 forward)
-    {   
-        Ray ray;
+    {
         Vector3 startRay = transform.position + Vector3.up * 2 + forward.normalized;
         Debug.DrawRay(startRay,Vector3.down * 10, Color.red);
         if (Physics.Raycast(startRay, Vector3.down * 10))
