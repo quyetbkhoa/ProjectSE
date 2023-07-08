@@ -27,7 +27,10 @@ public class PlayerController: MonoBehaviour
             verticalInput = joystick.Vertical;
             horizontalInput = joystick.Horizontal;
         }
-
+        if(horizontalInput == 0 && verticalInput == 0)
+        {
+            playerRb.velocity=Vector3.zero;
+        }
         if (horizontalInput != 0 || verticalInput != 0)
         {
             dir =new  Vector3(horizontalInput, 0f, verticalInput);
@@ -37,16 +40,23 @@ public class PlayerController: MonoBehaviour
         else isMove = false;
     }
 
+
+
     private void FixedUpdate()
     {
         if (!canMove)
         {
             playerRb.velocity = Vector3.zero;
         }
-        else if (CanMove(dir)) playerRb.velocity = new Vector3(horizontalInput * speed*Time.deltaTime, playerRb.velocity.y,verticalInput * speed*Time.deltaTime);
-         
-        
+        else if (CanMove(dir))
+        {   
+            //move by addforce
+            //playerRb.AddForce(dir * speed * Time.deltaTime, ForceMode.VelocityChange);
+            playerRb.velocity = new Vector3(horizontalInput * speed * Time.deltaTime, playerRb.velocity.y,
+                verticalInput * speed * Time.deltaTime);
+        }
     }
+    
     //reset joystick
     public void ResetJoystick()
     {
@@ -68,6 +78,7 @@ public class PlayerController: MonoBehaviour
             playerRb.velocity = Vector3.zero;
             return false;
         }
-            
     }
+    //if stay in one postion for over 3s, reset joystick
+
 }

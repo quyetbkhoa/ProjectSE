@@ -47,19 +47,19 @@ public class ChoiceQuetionController : MonoBehaviour
             button.interactable = false;
         }
         buttons[answer - 1].GetComponent<Image>().color = Color.green;
- 
+        if(clicked != answer)
+            buttons[clicked - 1].GetComponent<Image>().color = Color.red;
+        
         if (clicked == answer)
         {   
             
             //print  Yes and after 1s canvas is disabled
              animator.Play("Yes");
-             
              StartCoroutine(ToGameplay());
                 
         }
         else
-        {   
-            
+        {
             animator.Play("No");
             StartCoroutine(ToGameplay());
         }

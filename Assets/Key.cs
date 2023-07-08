@@ -17,4 +17,15 @@ public class Key : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //xoay vong
+    private void Update()
+    {
+        transform.Rotate(Vector3.up, 50 * Time.deltaTime);
+    }
+    //phat sang
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawSphere(transform.position, 5f);
+    // }
 }

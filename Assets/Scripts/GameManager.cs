@@ -11,9 +11,18 @@ public class GameManager : Singleton<GameManager>
    // public int maxLevel => PlayerPrefs.GetInt("current_level",1) ;
 
    public bool reset = false;
-   [SerializeField] private GameObject losePopup;
    [SerializeField] private GameObject winPopup;
+   
+   //if winPopup is null then find it by name in scene
+ 
    public Canvas canvasLevel;
+   private void Start()
+   {
+      if (canvasLevel == null)
+      {
+         canvasLevel = GameObject.Find("CanvasLevel").GetComponent<Canvas>();
+      }
+   }
    public void OnWinGame()
    {  
       //Show Win Popup
