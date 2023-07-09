@@ -9,6 +9,7 @@ public class NPCTutorial: NPC
     // pickups and direction
     public  GameObject[] Pickups;
     public  Direction[] List_Direction;
+    [SerializeField] private Speech speech;
     private  int index = 0;
     //show List<KeyValuePair<GameObject,int>> in Inspector
     public override void Interact(GameObject _player)
@@ -20,13 +21,10 @@ public class NPCTutorial: NPC
 
         if (index <Pickups.Length)
         {
-            if (Pickups[index].CompareTag("Key"))
+            //if pickup is key, star or chest speech.ShowTutorial(pickup, direction)
+            if (Pickups[index].CompareTag("Key") || Pickups[index].CompareTag("Star") || Pickups[index].CompareTag("Chest"))
             {
-                print("key");
-            }
-            else if (Pickups[index].CompareTag("Star"))
-            {
-                print("star "+index);
+                speech.ShowTutorial(Pickups[index], List_Direction[index]);
             }
         }
     }

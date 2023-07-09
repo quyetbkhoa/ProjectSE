@@ -9,24 +9,27 @@ public class GameManager : Singleton<GameManager>
    [HideInInspector] public int starCount = 0; 
    public int indexLevel => PlayerPrefs.GetInt("current_level",1) ;
    // public int maxLevel => PlayerPrefs.GetInt("current_level",1) ;
-
+   
    public bool reset = false;
    [SerializeField] private GameObject winPopup;
+   [SerializeField] private PlayerAnim playerAnim;
    
    //if winPopup is null then find it by name in scene
  
-   public Canvas canvasLevel;
+   public GameObject joystick;
    private void Start()
    {
-      if (canvasLevel == null)
+      if (joystick == null)
       {
-         canvasLevel = GameObject.Find("CanvasLevel").GetComponent<Canvas>();
+         joystick = GameObject.Find("Fixed Joystick");
       }
+      AudioManager.Instance.Play("Background");
    }
    public void OnWinGame()
    {  
-      //Show Win Popup
-      canvasLevel.gameObject.SetActive(false);
+      playerAnim.playerState = PlayerState.Win;
+      //PlayerAnim.playerState = PlayerState.Win;
+      joystick.SetActive(false);
       winPopup.SetActive(true);
       //PlayerPrefs.SetInt("current_level", indexLevel +1);
    }

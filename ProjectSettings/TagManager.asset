@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Star
+  - Key
+  - Chest
   layers:
   - Default
   - TransparentFX

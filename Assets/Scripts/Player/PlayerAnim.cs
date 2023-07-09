@@ -7,7 +7,7 @@ public class PlayerAnim : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator playerAnimator;
-    [ReadOnly] public PlayerState playerState;
+    public PlayerState playerState;
     // Start is called before the first frame update
     // Update is called once per frame
     void LateUpdate()

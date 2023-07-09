@@ -9,8 +9,9 @@ public class WinPopup : Popup
     base.OnClick();
     print("continue");
     //Find canvas level and set it to true
-    GameManager.Instance.canvasLevel.gameObject.SetActive(true);
-    TurnOff();
+    GameManager.Instance.joystick.SetActive(true);
+    // GameManager.Instance.canvasLevel.gameObject.SetActive(true);
+    // TurnOff();
     GameManager.Instance.starCount = 0;
     GameManager.Instance.LoadNextLevel();
   }
