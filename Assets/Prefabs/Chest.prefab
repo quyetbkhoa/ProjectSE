@@ -365,8 +365,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993653475168197407}
-  m_LocalRotation: {x: -0, y: 0.9999029, z: -0, w: 0.013937581}
-  m_LocalPosition: {x: -0.19393921, y: -0.42061234, z: -0.7932129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -375,7 +375,7 @@ Transform:
   - {fileID: 8993653474719830649}
   m_Father: {fileID: 8993653475433532669}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 178.403, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &859199042
 Animator:
   serializedVersion: 5
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 8993653475433532671}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993653475433532666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.4, y: 23.473804, z: 63.6}
+  m_LocalPosition: {x: 54.4, y: 0, z: 63.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -456,5 +456,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.444481, y: 2.8012447, z: 3.569786}
-  m_Center: {x: -0.14220047, y: 0.90062237, z: -0.7592583}
+  m_Size: {x: 5.9054832, y: 3.093, z: 8.273937}
+  m_Center: {x: -0.038290024, y: 1.4787302, z: -1.7256298}

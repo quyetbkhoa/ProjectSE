@@ -5,15 +5,16 @@ using UnityEngine.Audio;
 public class AudioManager : Singleton<AudioManager> {
     
     public Sound[] sounds;
-
-    void Start()
-    {
+    
+    void Awake()
+    {   
+        DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
+            s.source.pitch = 1;
             s.source.loop = s.loop;
         }
         Play("Background");

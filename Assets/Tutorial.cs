@@ -9,9 +9,8 @@ public class Tutorial : MonoBehaviour
     public GameObject[] popUpTutorial;
 
     void Update()
-    {   
-        if(GameManager.Instance.indexLevel == 1)
-           for (int i = 0; i < popUpTutorial.Length; ++i)
+    {
+        for (int i = 0; i < popUpTutorial.Length; ++i)
            {
                     if (i == index)
                     {

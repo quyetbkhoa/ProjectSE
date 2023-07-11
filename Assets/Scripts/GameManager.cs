@@ -17,52 +17,63 @@ public class GameManager : Singleton<GameManager>
    //if winPopup is null then find it by name in scene
  
    public GameObject joystick;
-   private void Start()
-   {
+ 
+   
+   private void Awake()
+   {  
+      DontDestroyOnLoad(gameObject);
+   }
+   public void OnWinGame()
+   {  
+      
+      playerAnim.playerState = PlayerState.Win;
+      joystick.SetActive(false);
+      winPopup.SetActive(true);
+      print(1);
+      //PlayerPrefs.SetInt("current_level", indexLevel +1);
+   }
+   //OnNewGame function
+   public void OnNewGame(AsyncOperation scene)
+   {  
       if (joystick == null)
       {
          joystick = GameObject.Find("Fixed Joystick");
       }
-     
+      joystick.SetActive(true);
+      playerAnim = GameObject.FindObjectOfType<PlayerAnim>();
    }
-   public void OnWinGame()
-   {  
-      playerAnim.playerState = PlayerState.Win;
-      //PlayerAnim.playerState = PlayerState.Win;
-      joystick.SetActive(false);
-      winPopup.SetActive(true);
-      //PlayerPrefs.SetInt("current_level", indexLevel +1);
-   }
-
    private void Update()
-   {
+   {  
       if (reset)
       {  
-         PlayerPrefs.SetInt("current_level",1);   
-        // AudioManager.instance.Play("Background");
+         PlayerPrefs.SetInt("current_level",1);
+         //restart game
+         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+         // AudioManager.instance.Play("Background");
       }
-      
-
-      
       reset = false;
+      //if playerAnim null then find it by name in scene
    }
    public void LoadLevel(int index)
    {  
+      starCount =0;
       PlayerPrefs.SetInt("current_level", index);
       
       string sceneName = $"Level {index}";
-      if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
+      if (SceneUtility.GetBuildIndexByScenePath(sceneName) ==-1)
       {
-         SceneManager.LoadScene(sceneName);
+         Debug.LogError($"Scene {sceneName} not found!");
+         return;
       }
-      else
-      {
-         Debug.LogError($"Scene {index} not found!");
-      }
+      var scene = SceneManager.LoadSceneAsync(sceneName);
+      //After finish load scene, OnprepareLevel will be called
+      scene.completed += OnNewGame;
+     
    }
    public void LoadNextLevel()
    {
       LoadLevel(indexLevel+1);
    }
+
 }
 

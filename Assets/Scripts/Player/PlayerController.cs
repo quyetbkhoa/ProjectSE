@@ -40,12 +40,14 @@ public class PlayerController: MonoBehaviour
         else isMove = false;
     }
 
-    void Move()
+    private void Awake()
     {
-        
+        //if fixed jpystick null
+        if (joystick == null)
+        {
+            joystick = FindObjectOfType<FixedJoystick>();
+        }
     }
-
-
 
     private void FixedUpdate()
     {
