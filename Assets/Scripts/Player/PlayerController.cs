@@ -40,6 +40,11 @@ public class PlayerController: MonoBehaviour
         else isMove = false;
     }
 
+    void Move()
+    {
+        
+    }
+
 
 
     private void FixedUpdate()
@@ -48,7 +53,7 @@ public class PlayerController: MonoBehaviour
         {
             playerRb.velocity = Vector3.zero;
         }
-        else if (CanMove(dir))
+        else if (CheckCanMove(dir))
         {   
             //move by addforce
             //playerRb.AddForce(dir * speed * Time.deltaTime, ForceMode.VelocityChange);
@@ -63,7 +68,7 @@ public class PlayerController: MonoBehaviour
        joystick.OnPointerUp(null);
     }
 
-    private bool CanMove(Vector3 forward)
+    private bool CheckCanMove(Vector3 forward)
     {
         Vector3 startRay = transform.position + Vector3.up * 2 + forward.normalized;
         Debug.DrawRay(startRay,Vector3.down * 10, Color.red);

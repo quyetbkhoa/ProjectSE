@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : Singleton<AudioManager>
-{
+public class AudioManager : Singleton<AudioManager> {
+    
     public Sound[] sounds;
 
-    void Awake ()
+    void Start()
     {
         foreach (Sound s in sounds)
         {
@@ -16,11 +16,12 @@ public class AudioManager : Singleton<AudioManager>
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        Play("Background");
     }
-
     public void Play(string sound)
     {
         Sound s = Array.Find(sounds, item => item.name == sound);
+        print(s);
         s.source.Play();
     }
     public void Stop(string sound)

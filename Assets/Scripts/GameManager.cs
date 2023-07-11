@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
       {
          joystick = GameObject.Find("Fixed Joystick");
       }
-      AudioManager.Instance.Play("Background");
+     
    }
    public void OnWinGame()
    {  
@@ -36,7 +36,14 @@ public class GameManager : Singleton<GameManager>
 
    private void Update()
    {
-      if(reset) PlayerPrefs.SetInt("current_level",1);
+      if (reset)
+      {  
+         PlayerPrefs.SetInt("current_level",1);   
+        // AudioManager.instance.Play("Background");
+      }
+      
+
+      
       reset = false;
    }
    public void LoadLevel(int index)

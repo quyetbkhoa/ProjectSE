@@ -19,10 +19,10 @@ public class NPCQuestion: NPC
             if (_player.CompareTag("Player"))
             {
                 player = _player;
-                StartCoroutine(Hello());
+                StartCoroutine(ToQuestion());
             } 
         }
-        IEnumerator Hello()
+        IEnumerator ToQuestion()
         {   
             //play hello animation
             
