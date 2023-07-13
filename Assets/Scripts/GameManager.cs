@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
    [HideInInspector] public int starCount = 0; 
    public int indexLevel => PlayerPrefs.GetInt("current_level",1) ;
    // public int maxLevel => PlayerPrefs.GetInt("current_level",1) ;
-   
+   public CameraController camera;
    public bool reset = false;
    [SerializeField] private GameObject winPopup;
    [SerializeField] private PlayerAnim playerAnim;
@@ -26,7 +26,9 @@ public class GameManager : Singleton<GameManager>
    public void OnWinGame()
    {  
       
-      playerAnim.playerState = PlayerState.Win;
+      playerAnim.playerState = PlayerState.Dance;
+      //zoom camera x2 slowly in 1s
+      camera.Zoom(2,1);
       joystick.SetActive(false);
       winPopup.SetActive(true);
       print(1);
@@ -41,6 +43,8 @@ public class GameManager : Singleton<GameManager>
       }
       joystick.SetActive(true);
       playerAnim = GameObject.FindObjectOfType<PlayerAnim>();
+      //get camera
+      camera = GameObject.FindObjectOfType<CameraController>();
    }
    private void Update()
    {  
@@ -70,6 +74,8 @@ public class GameManager : Singleton<GameManager>
       scene.completed += OnNewGame;
      
    }
+   //change LoadLevel to LoadScene
+   
    public void LoadNextLevel()
    {
       LoadLevel(indexLevel+1);

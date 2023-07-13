@@ -2,23 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     public Camera camera;
-    
-    private Vector3 offset;
-    private Vector3 offset1;
-    private Vector3 offsetRotation;
+
+    private Vector3 offsetCamera = new Vector3(-0f, 27.13f, -30.23f);
+    [SerializeField] private Vector3 offset = new Vector3(13.2f, 2, 38.7f);
+    private Vector3 offsetRotation = new Vector3(40f, 0f, 0f) ;
     private void Start()
     {   
         //offset = transform.position - player.transform.position;
         if(player == null)
             player = GameObject.FindGameObjectWithTag("Player");
-        offset = new Vector3(-0f, 27.13f, -30.23f);
-        offsetRotation = new Vector3(40, 0, 0);
-        offset1 = transform.position - player.transform.position;
+        // offsetCamera = new Vector3(-0f, 27.13f, -30.23f);
+        // offset = transform.position - player.transform.position;
+        // offset = new Vector3(13.2f, 0, 38.7f);
         ResetCamera();
     }
     private bool isFollowPlayer = true;
@@ -32,8 +33,8 @@ public class CameraController : MonoBehaviour
         print("reset");
         isFollowPlayer= true;
         //camera tranform and rotation is offset
-         camera.transform.position = player.transform.position + offset;
-         print(player.transform.position + offset);
+         camera.transform.position = player.transform.position + offsetCamera;
+         print(player.transform.position + offsetCamera);
          camera.transform.rotation = Quaternion.Euler(offsetRotation);
          
     }
@@ -47,7 +48,22 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         if(isFollowPlayer)
-        transform.position = player.transform.position + offset1;
+        transform.position = player.transform.position + offset;
+    }
+    public void Zoom(float zoom, float time)
+    {
+        StartCoroutine(ZoomCoroutine(zoom,time));
+    }
+    IEnumerator ZoomCoroutine(float zoom, float time)
+    {
+        float elapsedTime = 0;
+        float startSize = camera.orthographicSize;
+        while (elapsedTime < time)
+        {
+            camera.orthographicSize = Mathf.Lerp(startSize, startSize * zoom, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
     // void FixedUpdate()
     // {

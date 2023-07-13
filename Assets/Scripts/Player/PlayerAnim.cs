@@ -15,9 +15,9 @@ public class PlayerAnim : MonoBehaviour
         UpdatePlayerState();
         SetPlayerAnim();
     }
-
     void UpdatePlayerState()
-    {
+    {      
+        if(playerState == PlayerState.Dance) return;
         if (playerController.isMove)
         {
             playerState = PlayerState.Walk;
@@ -38,8 +38,10 @@ public class PlayerAnim : MonoBehaviour
             case PlayerState.Walk:
                 playerAnimator.Play("Walk");
                 break;
-            case  PlayerState.Win:
-                playerAnimator.Play("Win");
+            case  PlayerState.Dance:
+                //quay nhan vat huong vao man hinh
+                transform.rotation = Quaternion.Euler(0,180,0);
+                playerAnimator.Play("Dance");
                 break;
         }
     }
@@ -48,5 +50,5 @@ public enum PlayerState
 {
     Idle,
     Walk,
-    Win,
+    Dance
 }   
