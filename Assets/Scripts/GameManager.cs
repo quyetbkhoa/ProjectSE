@@ -25,10 +25,11 @@ public class GameManager : Singleton<GameManager>
    }
    public void OnWinGame()
    {  
-      
+      AudioManager.Instance.Stop("Background");
+      AudioManager.Instance.Play("Win");
       playerAnim.playerState = PlayerState.Dance;
       //zoom camera x2 slowly in 1s
-      camera.Zoom(2,1);
+      camera.Zoom(1.6f,1);
       joystick.SetActive(false);
       winPopup.SetActive(true);
       print(1);
@@ -37,6 +38,7 @@ public class GameManager : Singleton<GameManager>
    //OnNewGame function
    public void OnNewGame(AsyncOperation scene)
    {  
+      AudioManager.Instance.Play("Background");
       if (joystick == null)
       {
          joystick = GameObject.Find("Fixed Joystick");
@@ -61,6 +63,11 @@ public class GameManager : Singleton<GameManager>
    public void LoadLevel(int index)
    {  
       starCount =0;
+      //set max level is 3
+      if (index > 3)
+      {
+         index = UnityEngine.Random.Range(1, 4);
+      }
       PlayerPrefs.SetInt("current_level", index);
       
       string sceneName = $"Level {index}";

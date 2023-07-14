@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
 {
    public TMP_Text textButton1;
+   //level popup
+   [SerializeField] private Popup levelPopup;
 
    public void Awake()
    {
@@ -29,7 +31,7 @@ public class ButtonController : MonoBehaviour
    }
    public void OnClickLevel()
    {
-      print("Clicked Level");
+      levelPopup.TurnOn();
    }
    public void OnClickQuit()
    {
@@ -40,6 +42,29 @@ public class ButtonController : MonoBehaviour
    {
          
    }
+   //OnClickLevel 1 to 5
+   public void OnClickLevel1()
+   {
+      GameManager.Instance.LoadLevel(1);
+   }
+   public void OnClickLevel2()
+   {
+      GameManager.Instance.LoadLevel(2);
+   }
+   public void OnClickLevel3()
+   {
+      GameManager.Instance.LoadLevel(3);
+   }
+   public void OnClickLevel4()
+   {
+      GameManager.Instance.LoadLevel(4);
+   }
+   public void OnClickLevel5()
+   {
+      GameManager.Instance.LoadLevel(5);
+   }
+   
+   
 
    
    public void OnClickNextLevel()

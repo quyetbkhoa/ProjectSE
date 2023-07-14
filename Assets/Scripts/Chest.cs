@@ -7,6 +7,7 @@ public class Chest : MonoBehaviour
 {   
     [SerializeField] private Tutorial tutorial;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject chat;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -19,12 +20,18 @@ public class Chest : MonoBehaviour
                 animator.Play("Chest_Open");
                 GameManager.Instance.OnWinGame();
             }
-            else Debug.Log("Need Key");
+            else
+            {
+                //set chat Active true in 3s
+                chat.SetActive(true);
+                StartCoroutine(ShowChat());
+            }
         }
     }
 
-    private void Awake()
+    IEnumerator ShowChat()
     {
-        animator.Play("Chest_Close");
+        yield return  new WaitForSeconds(1f);
+        chat.SetActive(false);
     }
 }

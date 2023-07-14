@@ -51,7 +51,9 @@ public class CameraController : MonoBehaviour
         transform.position = player.transform.position + offset;
     }
     public void Zoom(float zoom, float time)
-    {
+    {   
+        //change offset.y to 0
+        offset = new Vector3(offset.x, 0.5f, offset.z);
         StartCoroutine(ZoomCoroutine(zoom,time));
     }
     IEnumerator ZoomCoroutine(float zoom, float time)
@@ -60,7 +62,7 @@ public class CameraController : MonoBehaviour
         float startSize = camera.orthographicSize;
         while (elapsedTime < time)
         {
-            camera.orthographicSize = Mathf.Lerp(startSize, startSize * zoom, (elapsedTime / time));
+            camera.orthographicSize = Mathf.Lerp(startSize, startSize/zoom, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
