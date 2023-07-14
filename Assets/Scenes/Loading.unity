@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77bb2d2d1428344fb54ef47ea461e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: 1
   sounds:
   - name: Background
     clip: {fileID: 8300000, guid: b82c585d2acf02b4a9dcb21def6ce775, type: 3}
@@ -418,16 +419,16 @@ MonoBehaviour:
   - name: Click
     clip: {fileID: 8300000, guid: 4eacf341d4fa1f44f8399398f69416e3, type: 3}
     mixer: {fileID: 0}
-    volume: 0.5
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Win
+  - name: Win1
     clip: {fileID: 8300000, guid: 7e1f12b407c691041ab8e551697a550e, type: 3}
     mixer: {fileID: 0}
     volume: 0.5
     loop: 0
     source: {fileID: 0}
-  - name: Win1
+  - name: Win
     clip: {fileID: 8300000, guid: bfecd98222b28ed4085557ae1acaa116, type: 3}
     mixer: {fileID: 0}
     volume: 0.5

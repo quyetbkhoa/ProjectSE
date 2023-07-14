@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager> {
     
+    public bool music = true;
     public Sound[] sounds;
     
     void Awake()
@@ -17,10 +18,13 @@ public class AudioManager : Singleton<AudioManager> {
             s.source.pitch = 1;
             s.source.loop = s.loop;
         }
-        Play("Background");
+        //if music is true then play background music
+        music = PlayerPrefs.GetInt("music",1) == 1;
+        if (music) Play("Background");
     }
     public void Play(string sound)
-    {
+    {   
+        if(!music) return;
         Sound s = Array.Find(sounds, item => item.name == sound);
         print(s);
         s.source.Play();
@@ -29,6 +33,13 @@ public class AudioManager : Singleton<AudioManager> {
     {
         Sound s = Array.Find(sounds, item => item.name == sound);
         s.source.Stop();
+    }
+    public void StopAll()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.Stop();
+        }
     }
 
 }
