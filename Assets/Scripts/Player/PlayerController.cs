@@ -72,20 +72,27 @@ public class PlayerController: MonoBehaviour
 
     private bool CheckCanMove(Vector3 forward)
     {
-        Vector3 startRay = transform.position + Vector3.up * 2 + forward.normalized;
+        Vector3 startRay = transform.position + Vector3.up * 2 + forward.normalized *1.2f;
+        
+        // if (!Physics.Raycast(startRay, Vector3.down * 10))
+        // {
+        //     //print("Landing");
+        //     return true;
+        // }
+        //if Physics.Raycast(startRay, Vector3.down * 10) is tag river
+
+        RaycastHit hit;
+        Ray ray = new Ray(startRay, Vector3.down * 10);
         Debug.DrawRay(startRay,Vector3.down * 10, Color.red);
-        if (Physics.Raycast(startRay, Vector3.down * 10))
+        
+        if (Physics.Raycast(ray, out hit, 10f))
         {
-            //print("Landing");
             return true;
         }
         else
         {
-           // print("OnAir");
             playerRb.velocity = Vector3.zero;
             return false;
         }
     }
-    //if stay in one postion for over 3s, reset joystick
-
 }

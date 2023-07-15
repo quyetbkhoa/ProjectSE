@@ -17,8 +17,10 @@ public class ButtonController : MonoBehaviour
    public void Awake()
    {
       int level = PlayerPrefs.GetInt("current_level");
+      if(textButton1!=null)
       if (level != 1) textButton1.text = "CONTINUE";
       else textButton1.text = "START";
+      if(soundButtonOff ==null || soundButtonOn == null) return;
       if (PlayerPrefs.GetInt("music",1) == 0)
       {
          soundButtonOn.SetActive(false);
@@ -112,5 +114,21 @@ public class ButtonController : MonoBehaviour
    public void OnClickPlayAgain()
    {
       GameManager.Instance.LoadLevel(GameManager.Instance.indexLevel);   
+   }
+
+   public void OnClickPause()
+   {
+      GameManager.Instance.PauseGame();  
+   }
+
+   public void OnClickMenu()
+   {  
+      GameManager.Instance.ContinueGame();
+      SceneManager.LoadScene("Menu");
+   }
+
+   public void OnClickContinue()
+   {
+      GameManager.Instance.ContinueGame();
    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,39 +6,37 @@ using UnityEngine.Animations;
 
 public class NPC : MonoBehaviour
 {
-    public GameObject player;
-    void Update()
-    {
-        if (player != null)
-        {
-            transform.LookAt(player.transform.position);
-        }
-    }
-    public bool canQuestion = true;
-    //NPC will hello when player enter the trigger and after 3s the main camera is camera
-    private void OnTriggerEnter(Collider other)
-    {
-        if (canQuestion)
-        {
-            // canQuestion = false;
-             Interact(other.gameObject);
-        }
-            
-    }
-    // public void SetCanQuestion()
+    // [SerializeField] GameObject player;
+    //
+    // public void Awake()
     // {
-    //     StartCoroutine(ActiveAfter3s());
+    //     if(player == null)
+    //         player = GameObject.FindGameObjectWithTag("Player");
     // }
-    // IEnumerator ActiveAfter3s()
+    // public bool canQuestion = true;
+    // //NPC will hello when player enter the trigger and after 3s the main camera is camera
+    // private void OnTriggerEnter(Collider other)
     // {
-    //     yield return new WaitForSeconds(3);
-    //     canQuestion = true;
+    //     if (canQuestion)
+    //     {
+    //         // canQuestion = false;
+    //         if (other.CompareTag("Player")) Interact();
+    //     }
     // }
-
-    public virtual void Interact(GameObject _player)
-    {
-        
-    }
+    // // public void SetCanQuestion()
+    // // {
+    // //     StartCoroutine(ActiveAfter3s());
+    // // }
+    // // IEnumerator ActiveAfter3s()
+    // // {
+    // //     yield return new WaitForSeconds(3);
+    // //     canQuestion = true;
+    // // }
+    //
+    // public virtual void Interact()
+    // {
+    //     
+    // }
    
 }
 

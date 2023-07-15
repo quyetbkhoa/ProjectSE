@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
    public bool reset = false;
    [SerializeField] private GameObject winPopup;
    [SerializeField] private PlayerAnim playerAnim;
+   [SerializeField] private GameObject pauseMenu;
    
    //if winPopup is null then find it by name in scene
  
@@ -47,6 +48,8 @@ public class GameManager : Singleton<GameManager>
       playerAnim = GameObject.FindObjectOfType<PlayerAnim>();
       //get camera
       camera = GameObject.FindObjectOfType<CameraController>();
+      //find inactive pause menu
+      // pauseMenu = GameObject.Find("Pause Menu");
    }
    private void Update()
    {  
@@ -86,6 +89,21 @@ public class GameManager : Singleton<GameManager>
    public void LoadNextLevel()
    {
       LoadLevel(indexLevel+1);
+   }
+   
+   
+   public void PauseGame()
+   {
+      //pause game
+      Time.timeScale = 0;
+      pauseMenu.SetActive(true);
+   }
+
+   public void ContinueGame()
+   {
+      //continue
+      Time.timeScale = 1;
+      pauseMenu.SetActive(false);
    }
 
 }

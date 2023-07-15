@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCTutorial: NPC
+public class NPCTutorial: MonoBehaviour
 {   
     //list of pair GameObject and bool
     // pickups and direction
@@ -12,13 +12,17 @@ public class NPCTutorial: NPC
     [SerializeField] private Speech speech;
     private  int index = 0;
     //show List<KeyValuePair<GameObject,int>> in Inspector
-    public override void Interact(GameObject _player)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (_player.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            player = _player;
+            Interact();
         }
-
+    }
+    
+    public void Interact()
+    {
         if (index <Pickups.Length)
         {
             //if pickup is key, star or chest speech.ShowTutorial(pickup, direction)

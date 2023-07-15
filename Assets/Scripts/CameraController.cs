@@ -30,11 +30,11 @@ public class CameraController : MonoBehaviour
     
     public void ResetCamera()
     {       
-        print("reset");
+        //print("reset");
         isFollowPlayer= true;
         //camera tranform and rotation is offset
          camera.transform.position = player.transform.position + offsetCamera;
-         print(player.transform.position + offsetCamera);
+         //print(player.transform.position + offsetCamera);
          camera.transform.rotation = Quaternion.Euler(offsetRotation);
          
     }
