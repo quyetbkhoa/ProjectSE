@@ -26,6 +26,11 @@ public class GameManager : Singleton<GameManager>
    }
    public void OnWinGame()
    {  
+      //set star count is maximum of star count
+      if (starCount > PlayerPrefs.GetInt("stars" + indexLevel, 0))
+      {
+         PlayerPrefs.SetInt("stars" + indexLevel, starCount);
+      }
       AudioManager.Instance.Stop("Background");
       AudioManager.Instance.Play("Win");
       playerAnim.playerState = PlayerState.Dance;
@@ -35,10 +40,12 @@ public class GameManager : Singleton<GameManager>
       winPopup.SetActive(true);
       print(1);
       //PlayerPrefs.SetInt("current_level", indexLevel +1);
+      
    }
    //OnNewGame function
    public void OnNewGame(AsyncOperation scene)
    {  
+      
       AudioManager.Instance.Play("Background");
       if (joystick == null)
       {
@@ -56,9 +63,11 @@ public class GameManager : Singleton<GameManager>
       if (reset)
       {  
          PlayerPrefs.SetInt("current_level",1);
-         //restart game
-         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-         // AudioManager.instance.Play("Background");
+         //reset stars
+         for (int i = 1; i <= 5; i++)
+         {
+            PlayerPrefs.SetInt("stars" + i, 0);
+         }
       }
       reset = false;
       //if playerAnim null then find it by name in scene

@@ -838,6 +838,7 @@ MonoBehaviour:
   player: {fileID: 8388962475098748249}
   camera: {fileID: 1257620855}
   offset: {x: 13.2, y: 4, z: 38.7}
+  offestZoom: {x: 13.2, y: 4, z: 38.7}
   smoothTime: 0.3
   smoothSpeed: 5
   vari: 0

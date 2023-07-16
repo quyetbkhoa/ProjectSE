@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     private Vector3 offsetCamera = new Vector3(-0f, 27.13f, -30.23f);
     [SerializeField] private Vector3 offset = new Vector3(13.2f, 2, 38.7f);
     private Vector3 offsetRotation = new Vector3(40f, 0f, 0f) ;
+    [SerializeField] Vector3 offestZoom = new Vector3(13.2f, 0.5f, 38.7f);
     private void Start()
     {   
         //offset = transform.position - player.transform.position;
@@ -50,10 +51,11 @@ public class CameraController : MonoBehaviour
         if(isFollowPlayer)
         transform.position = player.transform.position + offset;
     }
+    
     public void Zoom(float zoom, float time)
     {   
         //change offset.y to 0
-        offset = new Vector3(offset.x, 0.5f, offset.z);
+        offset = offestZoom;
         StartCoroutine(ZoomCoroutine(zoom,time));
     }
     IEnumerator ZoomCoroutine(float zoom, float time)
