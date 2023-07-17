@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -49,6 +50,17 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    public void Crabpush()
+    {   
+        //joystick cant move for 1s
+        joystick.OnPointerUp(null);
+        joystick.enabled = false;
+        playerRb.AddForce(transform.forward * -2000, ForceMode.Impulse);
+        //AddForce slow but smooth
+        
+        StartCoroutine(EnableJoystick());
+    }
+
     private void FixedUpdate()
     {
         if (!canMove)
@@ -66,8 +78,13 @@ public class PlayerController: MonoBehaviour
     
     //reset joystick
     public void ResetJoystick()
-    {
+    {   
        joystick.OnPointerUp(null);
+    }
+    IEnumerator EnableJoystick()
+    {
+        yield return new WaitForSeconds(.5f);
+        joystick.enabled = true;
     }
 
     private bool CheckCanMove(Vector3 forward)

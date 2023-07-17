@@ -13,6 +13,7 @@ public class Star : MonoBehaviour
         {
             GameManager.Instance.starCount++;
             starHandler.StarUpdate(GameManager.Instance.starCount);
+            AudioManager.Instance.Play("Target");
             Destroy(gameObject);
         }
     }

@@ -15,11 +15,7 @@ public class ButtonController : MonoBehaviour
    [SerializeField] private Popup settingPopup;
 
    public void Awake()
-   {
-      int level = PlayerPrefs.GetInt("current_level");
-      if(textButton1!=null)
-      if (level != 1) textButton1.text = "CONTINUE";
-      else textButton1.text = "START";
+   { 
       if(soundButtonOff ==null || soundButtonOn == null) return;
       if (PlayerPrefs.GetInt("music",1) == 0)
       {
@@ -36,9 +32,7 @@ public class ButtonController : MonoBehaviour
    public void OnClickPlay()
    {  
       
-      int level = PlayerPrefs.GetInt("current_level");
-      
-      print(level);
+      int level = PlayerPrefs.GetInt("current_level",1);
       GameManager.Instance.LoadLevel(level);
       AudioManager.Instance.Play("Click");
       // SceneManager.LoadScene($"Level + {}");
