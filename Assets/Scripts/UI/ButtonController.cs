@@ -30,9 +30,9 @@ public class ButtonController : MonoBehaviour
    }
 
    public void OnClickPlay()
-   {  
-      
+   {
       int level = PlayerPrefs.GetInt("current_level",1);
+      print(level);
       GameManager.Instance.LoadLevel(level);
       AudioManager.Instance.Play("Click");
       // SceneManager.LoadScene($"Level + {}");

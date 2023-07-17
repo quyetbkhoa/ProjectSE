@@ -62,13 +62,7 @@ public class GameManager : Singleton<GameManager>
    {  
       if (reset)
       {  
-         PlayerPrefs.SetInt("current_level",1);
-         PlayerPrefs.SetInt("max_level",1);
-         //reset stars
-         for (int i = 1; i <= 5; i++)
-         {
-            PlayerPrefs.SetInt("stars" + i, 0);
-         }
+        PlayerPrefs.DeleteAll();
       }
       reset = false;
       //if playerAnim null then find it by name in scene
