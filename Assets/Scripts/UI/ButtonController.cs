@@ -32,6 +32,7 @@ public class ButtonController : MonoBehaviour
    public void OnClickPlay()
    {
       int level = PlayerPrefs.GetInt("current_level",1);
+      if (level > 4) level = 4;
       print(level);
       GameManager.Instance.LoadLevel(level);
       AudioManager.Instance.Play("Click");
