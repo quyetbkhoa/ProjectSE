@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class PlayerController: MonoBehaviour
 {
     public float speed = 7f;
-    public float jumpForce = 10f;
     [SerializeField] private Rigidbody playerRb;
     private float verticalInput;
     private float horizontalInput;
@@ -43,24 +42,11 @@ public class PlayerController: MonoBehaviour
 
     private void Awake()
     {
-        //if fixed jpystick null
         if (joystick == null)
         {
             joystick = FindObjectOfType<FixedJoystick>();
         }
     }
-
-    public void Crabpush()
-    {   
-        //joystick cant move for 1s
-        joystick.OnPointerUp(null);
-        joystick.enabled = false;
-        playerRb.AddForce(transform.forward * -2000, ForceMode.Impulse);
-        //AddForce slow but smooth
-        
-        StartCoroutine(EnableJoystick());
-    }
-
     private void FixedUpdate()
     {
         if (!canMove)
@@ -75,29 +61,13 @@ public class PlayerController: MonoBehaviour
                 verticalInput * speed * Time.deltaTime);
         }
     }
-    
-    //reset joystick
     public void ResetJoystick()
     {   
        joystick.OnPointerUp(null);
     }
-    IEnumerator EnableJoystick()
-    {
-        yield return new WaitForSeconds(.5f);
-        joystick.enabled = true;
-    }
-
     private bool CheckCanMove(Vector3 forward)
     {
         Vector3 startRay = transform.position + Vector3.up * 2 + forward.normalized *1.2f;
-        
-        // if (!Physics.Raycast(startRay, Vector3.down * 10))
-        // {
-        //     //print("Landing");
-        //     return true;
-        // }
-        //if Physics.Raycast(startRay, Vector3.down * 10) is tag river
-
         RaycastHit hit;
         Ray ray = new Ray(startRay, Vector3.down * 10);
         Debug.DrawRay(startRay,Vector3.down * 10, Color.red);

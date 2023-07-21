@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class ChoiceQuetionController : MonoBehaviour
 {
-    // public Button A;
-    // public Button B;
-    // public Button C;
-    // public Button D;
     public Button[] buttons;
     public int clicked = 0;
     public int answer = 3;

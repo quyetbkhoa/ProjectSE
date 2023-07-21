@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    // Start is called before the first frame update
     public bool button = false;
 
     private void Update()
@@ -13,10 +12,8 @@ public class Gate : MonoBehaviour
         if(button) Rotate();
         button = false;
     }
-    //rotate 90 degree with 1s
     public void Rotate()
-    {   
-        //get boxcollider and disable it
+    {
         GetComponent<BoxCollider>().enabled = false;
         StartCoroutine(RotateCoroutine());  
     }

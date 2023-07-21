@@ -18,7 +18,6 @@ public class AudioManager : Singleton<AudioManager> {
             s.source.pitch = 1;
             s.source.loop = s.loop;
         }
-        //if music is true then play background music
         music = PlayerPrefs.GetInt("music",1) == 1;
         if (music) Play("Background");
     }

@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-   public TMP_Text textButton1;
    //level popup
    [SerializeField] private Popup levelPopup;
    [SerializeField] private Popup settingPopup;
@@ -33,10 +32,8 @@ public class ButtonController : MonoBehaviour
    {
       int level = PlayerPrefs.GetInt("current_level",1);
       if (level > 4) level = 4;
-      print(level);
       GameManager.Instance.LoadLevel(level);
       AudioManager.Instance.Play("Click");
-      // SceneManager.LoadScene($"Level + {}");
    }
    public void OnClickLevel()
    {
@@ -54,7 +51,6 @@ public class ButtonController : MonoBehaviour
       settingPopup.TurnOn();
       
    }
-   //OnClickLevel 1 to 5
    public void OnClickLevel1()
    {
       GameManager.Instance.LoadLevel(1);
@@ -101,16 +97,6 @@ public class ButtonController : MonoBehaviour
          AudioManager.Instance.Play("Background");
       }
    }
-   public void OnClickNextLevel()
-   {
-      GameManager.Instance.LoadNextLevel();
-      
-   }
-   public void OnClickPlayAgain()
-   {
-      GameManager.Instance.LoadLevel(GameManager.Instance.indexLevel);   
-   }
-
    public void OnClickPause()
    {
       GameManager.Instance.PauseGame();  

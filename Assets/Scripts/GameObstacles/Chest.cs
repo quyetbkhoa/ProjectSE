@@ -22,7 +22,6 @@ public class Chest : MonoBehaviour
             }
             else
             {
-                //set chat Active true in 3s
                 chat.SetActive(true);
                 StartCoroutine(ShowChat());
             }

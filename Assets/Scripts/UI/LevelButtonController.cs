@@ -11,13 +11,12 @@ public class LevelButtonController : MonoBehaviour
     {   
         if (level > GameManager.Instance.maxLevel)
         {
-            // get button and make it un interactable
             GetComponent<UnityEngine.UI.Button>().interactable = false;
         }
         int starCount = PlayerPrefs.GetInt("stars" + level, 0);
-        if(starHandler == null) //find in childs
+        if(starHandler == null)
             starHandler = GetComponentInChildren<StarHandler>();
-            if(starHandler != null)
+        if(starHandler != null)
             starHandler.StarUpdate(starCount);
     }
 }

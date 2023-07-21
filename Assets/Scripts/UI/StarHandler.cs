@@ -11,7 +11,6 @@ public class StarHandler : MonoBehaviour
 
     public void StarUpdate(int starCount)
     {
-        //turn on star by for
         for (int i = 1; i <= starCount; i++)
         {
             if (i == 1) Star1.SetActive(true);
@@ -19,7 +18,6 @@ public class StarHandler : MonoBehaviour
             if (i == 3) Star3.SetActive(true);
         }
     }
-    //when acitve gameobject, call star update
     public void OnEnable()
     {
         StarUpdate(GameManager.Instance.starCount);
@@ -32,10 +30,4 @@ public class StarHandler : MonoBehaviour
         Star3.SetActive(false); 
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

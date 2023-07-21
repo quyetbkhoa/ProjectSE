@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class River : MonoBehaviour
 {
-  //make the river flow by material
   public float speed = 0.3f;
   private void Update()
   {

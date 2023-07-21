@@ -39,7 +39,6 @@ public class PlayerAnim : MonoBehaviour
                 playerAnimator.Play("Walk");
                 break;
             case  PlayerState.Dance:
-                //quay nhan vat huong vao man hinh
                 transform.rotation = Quaternion.Euler(0,180,0);
                 playerController.canMove = false;
                 playerAnimator.Play("Dance");

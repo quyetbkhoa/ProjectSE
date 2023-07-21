@@ -688,7 +688,7 @@ PrefabInstance:
     - target: {fileID: 6029893233268993533, guid: d3f6de711aae1fe41836fe10319f2294, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -7948898813885743936, guid: 5a1bcd24bbf4c2b49a2af70a69f7b693, type: 3}
+      objectReference: {fileID: 6609165504356089444, guid: 93e887e8935ba8b439ca8eb1965d2aaf, type: 3}
     - target: {fileID: 6029893234201980969, guid: d3f6de711aae1fe41836fe10319f2294, type: 3}
       propertyPath: m_Name
       value: Ground
@@ -1213,9 +1213,6 @@ MonoBehaviour:
   camera: {fileID: 1257620855}
   offset: {x: 13.2, y: 4, z: 38.7}
   offestZoom: {x: 13.2, y: 4, z: 38.7}
-  smoothTime: 0.3
-  smoothSpeed: 5
-  vari: 0
 --- !u!1001 &295074305
 PrefabInstance:
   m_ObjectHideFlags: 0

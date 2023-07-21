@@ -9,9 +9,7 @@ public class GameManager : Singleton<GameManager>
    public int starCount = 0; 
    public int indexLevel => PlayerPrefs.GetInt("current_level",1) ;
    public int maxLevel => PlayerPrefs.GetInt("max_level",1) ;
-   // public int maxLevel => PlayerPrefs.GetInt("current_level",1) ;
    public CameraController camera;
-   public bool reset = false;
    [SerializeField] private GameObject winPopup;
    [SerializeField] private PlayerAnim playerAnim;
    [SerializeField] private GameObject pauseMenu;
@@ -24,8 +22,7 @@ public class GameManager : Singleton<GameManager>
       DontDestroyOnLoad(gameObject);
    }
    public void OnWinGame()
-   {  
-      //set star count is maximum of star count
+   {
       if (starCount > PlayerPrefs.GetInt("stars" + indexLevel, 0))
       {
          PlayerPrefs.SetInt("stars" + indexLevel, starCount);
@@ -34,15 +31,12 @@ public class GameManager : Singleton<GameManager>
       AudioManager.Instance.Stop("Background");
       AudioManager.Instance.Play("Win");
       playerAnim.playerState = PlayerState.Dance;
-      //zoom camera x2 slowly in 1s
       camera.Zoom(1.6f,1);
       joystick.SetActive(false);
       winPopup.SetActive(true);
       print(1);
-      //PlayerPrefs.SetInt("current_level", indexLevel +1);
-      
+
    }
-   //OnNewGame function
    public void OnNewGame(AsyncOperation scene)
    {  
       
@@ -53,19 +47,7 @@ public class GameManager : Singleton<GameManager>
       }
       joystick.SetActive(true);
       playerAnim = GameObject.FindObjectOfType<PlayerAnim>();
-      //get camera
       camera = GameObject.FindObjectOfType<CameraController>();
-      //find inactive pause menu
-      // pauseMenu = GameObject.Find("Pause Menu");
-   }
-   private void Update()
-   {  
-      if (reset)
-      {  
-        PlayerPrefs.DeleteAll();
-      }
-      reset = false;
-      //if playerAnim null then find it by name in scene
    }
    public void LoadLevel(int index)
    {  
@@ -81,12 +63,9 @@ public class GameManager : Singleton<GameManager>
          return;
       }
       var scene = SceneManager.LoadSceneAsync(sceneName);
-      //After finish load scene, OnprepareLevel will be called
       scene.completed += OnNewGame;
      
    }
-   //change LoadLevel to LoadScene
-   
    public void LoadNextLevel()
    {  
       if(indexLevel+1>4)
@@ -95,14 +74,12 @@ public class GameManager : Singleton<GameManager>
    }
    public void PauseGame()
    {
-      //pause game
       Time.timeScale = 0;
       pauseMenu.SetActive(true);
    }
 
    public void ContinueGame()
    {
-      //continue
       Time.timeScale = 1;
       pauseMenu.SetActive(false);
    }

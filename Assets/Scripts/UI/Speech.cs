@@ -7,11 +7,6 @@ public class Speech : MonoBehaviour
     [SerializeField] GameObject imageKey;
     [SerializeField] GameObject imageStar;
     [SerializeField] GameObject imageArrow;
-    //luu link anh vao dau
-    //function ShowTutorial(chon 1 trong 2 loai Key va Star, enum Direction)
-    //show key or star, after 0.5s show arrow
-    //after 0.5s arrow is disabled
-    
     public void ShowTutorial(GameObject _image, Direction _direction)
     {   
         gameObject.SetActive(true);
@@ -38,12 +33,8 @@ public class Speech : MonoBehaviour
             imageKey.SetActive(false);
         }
         imageArrow.SetActive(true);
-        // the imageArrow is right
         switch (_direction)
-        {   
-            // case Direction.Up:
-            //     //rotate imageArrow on local rotation z axis 90 degree
-            
+        {
             case Direction.Up:
                 imageArrow.transform.localRotation = Quaternion.Euler(0, 0, 90);
                 break;
@@ -61,7 +52,6 @@ public class Speech : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         imageArrow.SetActive(false);
-        //reset rotation
         imageArrow.transform.rotation = Quaternion.Euler(0, 0, 0);
         gameObject.SetActive(false);
     }

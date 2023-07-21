@@ -17,8 +17,6 @@ public class NPCQuestion: MonoBehaviour
             if(playerController == null)
                 playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         }
-        
-        //if click on chatbox play to Question
         public void OnTriggerEnter(Collider other)
         {   
             if (other.CompareTag("Player"))
@@ -33,7 +31,6 @@ public class NPCQuestion: MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 chatBox.SetActive(false);
-                //stop hello animation
                 if(animator != null)
                     animator.Play("Idle");
             }
@@ -49,8 +46,7 @@ public class NPCQuestion: MonoBehaviour
             playerController.canMove = false;
             
             yield return new WaitForSeconds(.5f);
-            
-            //set Question
+
             camera.SetCameraToQuesTion();
             canvasLevel.gameObject.SetActive(false);
             canvasChoice.gameObject.SetActive(true);
