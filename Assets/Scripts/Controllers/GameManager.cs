@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
    public int indexLevel => PlayerPrefs.GetInt("current_level",1) ;
    public int maxLevel => PlayerPrefs.GetInt("max_level",1) ;
    public CameraController camera;
+   public int Test=0;
    [SerializeField] private GameObject winPopup;
    [SerializeField] private PlayerAnim playerAnim;
    [SerializeField] private GameObject pauseMenu;
